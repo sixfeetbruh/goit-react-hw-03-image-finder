@@ -1,3 +1,5 @@
+// SearchBar
+
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import { MdImageSearch } from 'react-icons/md';
