@@ -42,11 +42,13 @@ export class Modal extends Component {
     const { onLoad } = this.props;
 
     return createPortal(
-      <Overlay onClick={this.handleBackdropClick}>
+      <div>
+        <Overlay onClick={this.handleBackdropClick}>
         <ModalStyled>
-          <img src={link} alt={alt} onLoad={() => onLoad()} />
-        </ModalStyled>
-      </Overlay>,
+          <img src={link} alt={alt} onClick={(e) => e.stopPropagation()} onLoad={() => onLoad()} />
+        </ModalStyled>        
+        </Overlay>
+      </div>,
       modalRoot
     );
   }

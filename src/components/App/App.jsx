@@ -28,7 +28,6 @@ export class App extends Component {
     const { page, loadedImages, searchQuery } = this.state;
     const prevQueryValue = prevState.searchQuery;
     const currentQueryValue = searchQuery;
-
     if (prevQueryValue !== currentQueryValue || prevState.page !== page) {
       try {
         this.setState({ status: 'pending' });
@@ -44,7 +43,6 @@ export class App extends Component {
         });
       } catch (error) {
         this.setState({ error: true });
-
         toast.error('Oops, something went wrong :(');
 
         console.log(error);
@@ -61,7 +59,10 @@ export class App extends Component {
   };
 
   handleFormSubmit = inputValue => {
-    this.setState({ searchQuery: inputValue, loadedImages: [], page: 1 });
+    this.setState(prevState => {
+      if (prevState.searchQuery !== inputValue)
+        return ({ searchQuery: inputValue, loadedImages: [], page: 1 })
+    });
   };
 
   handleLoadMoreClick = () => {
